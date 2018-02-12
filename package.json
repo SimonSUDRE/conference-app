@@ -1,0 +1,29 @@
+{
+  "name": "conference-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "webpack-dev-server",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.30.1",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonSUDRE/conference-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SimonSUDRE/conference-app/issues"
+  },
+  "homepage": "https://github.com/SimonSUDRE/conference-app#readme"
+}
