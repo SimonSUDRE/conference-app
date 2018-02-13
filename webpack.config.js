@@ -1,17 +1,27 @@
-var path = require('path');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let path = require('path');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    // définition des points d'entrée
-    // il est possible de définir plusieurs points d'entrée
-    entry: './app/index.js',
+    entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
     },
+    module : {
+        rules: [
+            {
+                test: /\.(html)$/, 
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                      attrs: [':data-src']
+                    }
+                }
+            }
+        ]
+    },
+    devtool:"cheap-module-eval-source-map",
     plugins: [
-        new UglifyJSPlugin(),
         new HtmlWebpackPlugin()
     ]
 }
