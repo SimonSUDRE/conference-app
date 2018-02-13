@@ -16,6 +16,12 @@ var router = () => {
        speakerList.render(idview);
     } else if (location.hash == '#sessions-list') {
         sessionList.render(idview);
+    } else if(location.hash.startsWith('#session[')) {
+        let idSession = location.hash.substring(location.hash.lastIndexOf('[')+1, location.hash.lastIndexOf(']'));
+        sessionList.renderSession(idview, idSession);
+    } else if(location.hash.startsWith('#speaker[')) {
+        let idSpeaker = location.hash.substring(location.hash.lastIndexOf('[')+1, location.hash.lastIndexOf(']'));
+        speakerList.renderSpeaker(idview, idSpeaker);
     } else {
         layout.render();
     }
