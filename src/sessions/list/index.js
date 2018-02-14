@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default class SessionList {
     
     constructor(talkService){
@@ -5,39 +7,69 @@ export default class SessionList {
     }
 
     render(idView){
-        let $ = require("jquery");
         this.talkService.findAllSessions()
         .then(sessions => {
             $(idView).html(
-                '<ul>' +
-                sessions.map(session =>
-                    '<li><a href="#session[' +
-                    session.id + ']">' +
-                    session.title + 
-                    '</a></li>'
-                ).join('') +
-                '</ul>');
+                `<div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-group">` +
+                                sessions.map(session =>
+                                    `<li class="list-group-item">
+                                        <a class="d-flex justify-content-between align-items-center"
+                                            href="#session[` + session.id + ']">' +
+                                            session.title +
+                                            `<i class="material-icons">keyboard_arrow_right</i>
+                                        </a>
+                                    </li>`
+                                ).join('') +
+                            `</ul>
+                        </div>
+                    </div>
+                </div>`
+            );
         })
     }
 
     renderSession(idView, idSession){
-        let $ = require("jquery");
-        let presentationlist = '';
-        this.talkService.findSpeakerSessions(idSpeaker)
-        .then(sessions => sessions
-            .forEach(session => 
-                presentationlist += '<li><a href="#session[' + session.id + ']">' + session.title + '</a></li>'
-            )
-        );
-        this.talkService.findSpeakerById(idSession)
+        this.talkService.findSessionById(idSession)
         .then(session => {
-            let speakerList = '';
+            let speakerlist = '';
+            this.talkService.findSessionSpeakers(session.title)
+            .then(speakers => speakers
+                .forEach(speaker => 
+                    speakerlist += 
+                        `<li>
+                            <img class="col-3 col-md-2 col-lg-4 mb-2 image-fluid" 
+                                src="/images/` + speaker.image + `">
+                            <a class="col-9 col-lg-8"
+                                href="#speaker[` + speaker.id + ']">' +
+                                speaker.lastname.toUpperCase() + ' ' +
+                                speaker.firstname +
+                            `</a>
+                        </li>`
+                )
+            );
             $(idView).html(
-                '<h1>' + 
-                    session.titre +
-                '</h1><br>' +
-                '<p>' + session.desc + '</p>' +
-                speakerList
+                `<div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <h1>` + session.titre + `</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                        <p>` + session.desc + `</p>
+                    </div>
+                    <ul class="col-12 col-lg-4 list-unstyled">` +
+                        speakerList + 
+                    `</ul>
+                    </div>
+                    <div class="row justify-content-center">
+                        <a class="btn btn-secondary col-10 col-sm-5 mb-3 mt-3" 
+                            href="#notes[` + session.id + `]">Mes notes</a>
+                    </div>
+                </div>`
             );
         })
     }

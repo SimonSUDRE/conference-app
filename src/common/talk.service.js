@@ -21,4 +21,8 @@ export default class TalkService {
     findSpeakerSessions(idSpeaker){
         return $.get("http://localhost:3000/sessions?speakers_like=" + idSpeaker);
     }
+
+    findSessionSpeakers(titleSession){
+        return $.get("http://localhost:3000/speakers?category.title=" + titleSession);
+    }
 }

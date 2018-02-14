@@ -5,23 +5,28 @@
   "main": "index.js",
   "scripts": {
     "start": "json-server --watch db.json | webpack-dev-server",
-    "serve": "webpack-dev-server",
-    "dist": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.28.9",
+    "file-loader": "^1.1.6",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^2.30.1",
     "jquery": "^3.3.1",
     "json-server": "^0.12.1",
-    "uglifyjs-webpack-plugin": "^1.1.8",
+    "style-loader": "^0.20.1",
     "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "webpack-material-design-icons": "^0.1.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "popper.js": "^1.12.9",
+    "jquery": "^3.3.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SimonSUDRE/conference-app.git"

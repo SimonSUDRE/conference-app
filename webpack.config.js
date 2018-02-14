@@ -9,15 +9,9 @@ module.exports = {
     },
     module : {
         rules: [
-            {
-                test: /\.(html)$/, 
-                use: {
-                    loader: 'html-loader',
-                    options: {
-                      attrs: [':data-src']
-                    }
-                }
-            }
+            { test: /\.html$/, use: 'html-loader' },
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.(jpe?g|png|gif|svg|eot|woff|ttf|svg|woff(2))$/, use: "file-loader" }
         ]
     },
     devtool:"cheap-module-eval-source-map",
