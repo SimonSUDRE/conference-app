@@ -32,6 +32,7 @@ export default class SessionList {
     }
 
     renderSession(idView, idSession){
+        
         this.talkService.findSessionById(idSession)
         .then(session => {
             let speakerlist = '';
